@@ -11,7 +11,7 @@ measure_units = 'imperial' # You can choose between imperial or metric
 source_excel_file = "TYPE YOUR SOURCE FILE PATH/NAME" # Excel file where address data are
 target_excel_file = "TYPE YOUR TARGET FILE PATH/NAME" # Excel file to save output with distance measures
 source_column_name = 'Source' # Column name inside excel file that has source address
-target_column_name = 'Target' # Column name inside excel file that has target address
+destination_column_name = 'Destination' # Column name inside excel file that has destination address
 distance_column_name = 'Distance' # Column name that will be created inside excel file to register distance
 
 # Load the Excel Spreadsheet in a pandas dataframe
@@ -32,10 +32,10 @@ def calculate_distance(source, destination):
 
 # Loop to iterate over all lines and calculate the distance for each address pair
 for index, row in df.iterrows():
-    source = row['Target']
-    destination = row['Source']
-    df.at[index, 'Distance'] = calculate_distance(source, destination)
+    source = row[source_column_name]
+    destination = row[destination_column_name]
+    df.at[index, distance_column_name] = calculate_distance(source, destination)
     time.sleep(0.05)  # Wait 50 ms to avoid API quota problem
 
 # Save Dataframe in a new excel file
-df.to_excel('distances_calculadas.xlsx', index=False)
+df.to_excel(target_excel_file, index=False)
