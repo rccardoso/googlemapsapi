@@ -14,7 +14,7 @@ source_column_name = 'Source' # Column name inside excel file that has source ad
 target_column_name = 'Target' # Column name inside excel file that has target address
 distance_column_name = 'Distance' # Column name that will be created inside excel file to register distance
 
-# Load the Excel Spreadsheet in a pandas datafram
+# Load the Excel Spreadsheet in a pandas dataframe
 df = pd.read_excel(source_excel_file)
 
 # Add the column to register the distance
